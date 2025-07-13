@@ -1,0 +1,20 @@
+/* globals.css yoki component CSS faylida */
+.react-international-phone-input-container {
+  --react-international-phone-border-radius: 8px;
+  --react-international-phone-border-color: #e2e8f0;
+  --react-international-phone-background-color: #F6F6F6;
+  --react-international-phone-text-color: #2d3748;
+  --react-international-phone-height: 40px;
+}
+
+.react-international-phone-input{
+  width: 100%;
+}
+ .react-international-phone-input-container .react-international-phone-input{
+  height: 56px;
+
+}
+.react-international-phone-country-selector-button {
+  padding: 16px;
+  height: 56px;
+}
