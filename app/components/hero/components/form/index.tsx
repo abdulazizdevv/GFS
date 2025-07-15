@@ -135,14 +135,13 @@ const ConnectForm = ({
         });
       }
     } catch (error) {
-      console.log(error);
-
       toaster.create({
         title: 'Error sending message',
         description: 'Please try again later.',
         type: 'error',
         duration: 5000,
       });
+      console.log(error);
     } finally {
       setIsSubmitting(false);
     }
