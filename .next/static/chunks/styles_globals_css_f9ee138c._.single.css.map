@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/styles/globals.css"],"sourcesContent":["\n:root {\n  --font-dm-sans: 'DM Sans', sans-serif;\n}\n\n* {\n  box-sizing: border-box;\n  font-family: var(--font-dm-sans);\n  scroll-behavior: smooth;\n}\n\n\na {\n  color: inherit;\n  text-decoration: none;\n}\nbody {\n  font-family: var(--font-poppins), sans-serif;\n}\n"],"names":[],"mappings":"AACA;;;;AAIA;;;;;;AAOA;;;;;AAIA"}}]
-}
