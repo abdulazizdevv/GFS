@@ -1,45 +1,25 @@
 import {
+  Box,
   Center,
   Container,
   HStack,
   Image,
+  Link,
   Separator,
   Stack,
   Text,
 } from '@chakra-ui/react';
-import Link from 'next/link';
 import React from 'react';
 import { BiLogoInstagramAlt } from 'react-icons/bi';
-import { FaXTwitter } from 'react-icons/fa6';
+import {
+  FaFacebook,
+  FaFacebookF,
+  FaXTwitter,
+  FaYoutube,
+} from 'react-icons/fa6';
 import { GrLinkedinOption } from 'react-icons/gr';
-import { HiOutlineMail } from 'react-icons/hi';
-import { IoCallOutline } from 'react-icons/io5';
 import { RiFacebookCircleFill } from 'react-icons/ri';
-
-const navGroups = [
-  {
-    items: [
-      { label: 'Flights', href: '/' },
-      { label: 'Tour Packages', href: '/' },
-      { label: 'Travel Deals', href: '/' },
-    ],
-  },
-  {
-    items: [
-      { label: 'Top City Airports', href: '/' },
-      { label: 'Top Airlines', href: '/' },
-      { label: 'Top Destinations', href: '/' },
-    ],
-  },
-  {
-    items: [
-      { label: 'About Us', href: '/' },
-      { label: 'Reviews', href: '/' },
-      { label: 'Customer Support', href: '/' },
-    ],
-  },
-];
-
+import { AiFillYoutube, AiOutlineYoutube } from 'react-icons/ai';
 const legalLinks = [
   { label: 'Terms', href: '/terms' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
@@ -54,109 +34,192 @@ const socialIcons = [
 ];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  const sharedStackProps = {
-    gap: { base: 3, lg: 6 },
-    color: 'white',
-  };
-
-  const socialIconProps = {
-    w: 11,
-    h: 11,
-    rounded: 'full',
-    p: '7px',
-    border: '1px solid #646363',
-  };
-
   return (
-    <HStack
-      as='footer'
-      px={{ base: 4 }}
-      py={{ base: 6, lg: 10 }}
-      bg='dark.100'
-      borderTopWidth='1px'
-      justify='center'
-      fontSize='sm'
-    >
-      <Container maxW='1200px'>
+    <Container maxW={'1300px'}>
+      <Box
+        pt={{ base: '40px', lg: '80px' }}
+        px={{ base: '30px', lg: '185px' }}
+        rounded={{ base: 8, lg: 30 }}
+        bg={'primary'}
+      >
         <HStack
-          flexWrap='wrap'
-          alignItems='start'
-          flexDir={{ base: 'column', md: 'row' }}
-          w='full'
-          justifyContent='space-between'
+          flexWrap={'wrap'}
+          w={'full'}
+          justifyContent={'space-between'}
+          alignItems={'start'}
         >
-          <Stack mb={{ base: 8, lg: 0 }} {...sharedStackProps}>
-            <Link href='/'>
-              <Image
-                src='/logo_grayser.png'
-                alt='Logo'
-                display={{ base: 'none', lg: 'flex' }}
-                w={{ base: '81px', lg: '125px' }}
-                h={{ base: '27px', lg: '41px' }}
-              />
-            </Link>
-            <HStack gap='6px' alignItems='start'>
-              <IoCallOutline color='#a09e9e' size={18} />
-              <Stack>
-                <Link href='tel:+18007639229'>+1 (800) 763-9229 (US)</Link>
-                <Link href='tel:+998712300222'>+998 (71) 230-02-22 (UZ)</Link>
-              </Stack>
-            </HStack>
-            <HStack gap='6px' alignItems='center'>
-              <HiOutlineMail color='#a09e9e' size={18} />
-              <Link href='mailto:info@tripoasia.com'>info@tripoasia.com</Link>
-            </HStack>
-          </Stack>
-          {navGroups.map((group, index) => (
-            <Stack key={index} {...sharedStackProps}>
-              {group.items.map((item) => (
-                <Link key={item.label} href={item.href}>
-                  {item.label}
-                </Link>
-              ))}
+          <Stack color={'light'}>
+            <Text fontSize={{ base: 13, lg: 25 }} fontWeight={700}>
+              Main menu
+            </Text>
+            <Stack mt={{ base: 7, lg: '50px' }} gap={{ base: 5, lg: 8 }}>
+              <Text fontSize={{ base: 13, lg: 24 }}>Why us</Text>
+              <Text fontSize={{ base: 13, lg: 24 }}>Partners</Text>
+              <Text fontSize={{ base: 13, lg: 24 }}>Reviews</Text>
+              <Text fontSize={{ base: 13, lg: 24 }}>Contact</Text>
             </Stack>
-          ))}
-        </HStack>
-        <Stack
-          mt={8}
-          display={{ base: 'flex', lg: 'none' }}
-          {...sharedStackProps}
-        >
-          {legalLinks.map((link) => (
-            <Link key={link.label} href={link.href}>
-              {link.label}
-            </Link>
-          ))}
-        </Stack>
-        <Separator colorPalette='red' mt={{ base: 12, lg: 16 }} />
-        <HStack
-          justifyContent='space-between'
-          color='white'
-          fontWeight={400}
-          mt={8}
-          flexDir={{ base: 'column-reverse', md: 'row' }}
-        >
-          <Text>© {currentYear} - TripOasia</Text>
-          <HStack>
-            {socialIcons.map(({ Icon, href }, index) => (
-              <Center key={index} {...socialIconProps}>
-                <Link href={href}>
-                  <Icon size={25} />
-                </Link>
-              </Center>
-            ))}
-          </HStack>
-          <HStack gap={4} display={{ base: 'none', lg: 'flex' }}>
-            {legalLinks.map((link) => (
-              <Link key={link.label} href={link.href}>
-                {link.label}
+          </Stack>
+          <Stack color={'light'}>
+            <Text fontSize={{ base: 13, lg: 25 }} fontWeight={700}>
+              Contacts
+            </Text>
+            <Stack mt={{ base: 7, lg: '50px' }} gap={{ base: 5, lg: 8 }}>
+              <Link
+                href='tel:6364421334'
+                color={'red'}
+                fontWeight={'bold'}
+                fontSize={{ base: 13, lg: 24 }}
+              >
+                (636)-442-1334
               </Link>
-            ))}
-          </HStack>
+              <Link
+                href='tel:3144511111'
+                fontWeight={'bold'}
+                color={'red'}
+                fontSize={{ base: 13, lg: 24 }}
+              >
+                (314) 451-1111
+              </Link>
+              <Box>
+                <Text fontWeight={'semibold'} fontSize={{ base: 13, lg: 24 }}>
+                  Email:
+                </Text>
+                <Link
+                  href='mailto:hr@gfs-groupllc.com'
+                  fontSize={{ base: 13, lg: 24 }}
+                >
+                  hr@gfs-groupllc.com
+                </Link>
+              </Box>
+            </Stack>
+          </Stack>
+          <Stack color={'light'}>
+            <Text fontSize={{ base: 13, lg: 25 }} fontWeight={700}>
+              Address
+            </Text>
+            <Stack
+              maxW={'343px'}
+              mt={{ base: 7, lg: '50px' }}
+              gap={{ base: 5, lg: 8 }}
+            >
+              <Box
+                width={{ base: '186px', lg: '343px' }}
+                mt={{ base: '25px', lg: '40px' }}
+                height={{ base: '101px', lg: '186px' }}
+              >
+                <iframe
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3111.511858117163!2d-90.549945!3d38.7519625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87df294496e9eaad%3A0x1e0de56385c5e95!2s1600%20Heritage%20Landing%20Suite%20112C%2C%20St%20Peters%2C%20MO%2063303%2C%20USA!5e0!3m2!1sen!2s!4v1752591955809!5m2!1sen!2s'
+                  width='100%'
+                  height='100%'
+                  loading='lazy'
+                  referrerPolicy='no-referrer-when-downgrade'
+                  style={{ border: 0 }}
+                />
+              </Box>
+              <Text
+                maxW={{ base: '186px', lg: '343px' }}
+                fontSize={{ base: 11, lg: 18 }}
+              >
+                1600 Heritage Landing Suite 112C, Saint Peters, MO
+              </Text>
+            </Stack>
+          </Stack>
         </HStack>
-      </Container>
-    </HStack>
+        <HStack
+          display={{ base: 'none', lg: 'flex' }}
+          justifyContent={{ base: 'start', lg: 'end' }}
+          gap={5}
+        >
+          <Link
+            target='_blank'
+            href='https://www.youtube.com/@GFSGROUPLLC'
+            rounded={'full'}
+          >
+            <Image w={6} src={'/icons/youtube.svg'} alt='yotube' />
+          </Link>
+          <Link
+            target='_blank'
+            href='https://www.facebook.com/people/GFS-GROUP-LLC/61563779612468/'
+            rounded={'full'}
+          >
+            <Image w={6} src={'/icons/facebook.svg'} alt='yotube' />
+          </Link>
+          <Link
+            target='_blank'
+            href='https://www.instagram.com/gfsgroupllc'
+            rounded={'full'}
+          >
+            <Image w={6} src={'/icons/instagram.svg'} alt='yotube' />
+          </Link>
+        </HStack>
+        <Box
+          display={{ base: 'none', lg: 'block' }}
+          mb={'50px'}
+          mt={2}
+          h={'1px'}
+          bg={'#7E868E'}
+        />
+        <HStack
+          fontSize={{ base: 11, lg: 'md' }}
+          pb={3}
+          justifyContent={'space-between'}
+          w={'full'}
+          display={{ base: 'none', lg: 'flex' }}
+        >
+          <Text color={'#7E868E'}>
+            © 2025 Gfs-Groupllc. All Rights Reserved.
+          </Text>
+          <Link color={'#7E868E'}>Terms of Service</Link>
+          <Link color={'#7E868E'}>Privacy Policy</Link>
+        </HStack>
+        <HStack
+          display={{ base: 'flex', lg: 'none' }}
+          justifyContent={'space-between'}
+          w={'full'}
+          pb={'10px'}
+        >
+          <Box>
+            <HStack
+              py={3}
+              justifyContent={{ base: 'start', lg: 'end' }}
+              gap={5}
+            >
+              <Link
+                target='_blank'
+                href='https://www.youtube.com/@GFSGROUPLLC'
+                rounded={'full'}
+              >
+                <Image w={6} src={'/icons/youtube.svg'} alt='yotube' />
+              </Link>
+              <Link
+                target='_blank'
+                href='https://www.facebook.com/people/GFS-GROUP-LLC/61563779612468/'
+                rounded={'full'}
+              >
+                <Image w={6} src={'/icons/facebook.svg'} alt='yotube' />
+              </Link>
+              <Link
+                target='_blank'
+                href='https://www.instagram.com/gfsgroupllc'
+                rounded={'full'}
+              >
+                <Image w={6} src={'/icons/instagram.svg'} alt='yotube' />
+              </Link>
+            </HStack>
+            <Text fontSize={10} color={'#7E868E'}>
+              © 2025 Gfs-Groupllc. All Rights Reserved.
+            </Text>
+          </Box>
+          <Stack>
+            <Link fontSize={11} color={'#7E868E'}>
+              Terms of Service
+            </Link>
+            <Link fontSize={11} color={'#7E868E'}>
+              Privacy Policy
+            </Link>
+          </Stack>
+        </HStack>
+      </Box>
+    </Container>
   );
 }

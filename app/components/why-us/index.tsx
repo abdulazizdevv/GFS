@@ -1,5 +1,33 @@
-import { Box, Center, Container, Span, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Container,
+  HStack,
+  SimpleGrid,
+  Span,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 import React from 'react';
+
+const knowDatas = [
+  {
+    title: '01',
+    text: 'We know what drivers deserve — real respect, steady miles, and top pay.',
+  },
+  {
+    title: '02',
+    text: 'At GFS GROUP, you’re not just a number — you’re part of a team that values your time, your skills, and your life on and off the road.',
+  },
+  {
+    title: '03',
+    text: 'We offer competitive rates, flexible routes, and 24/7 support to keep you moving and earning.',
+  },
+  {
+    title: '04',
+    text: 'Ready for a company  that drives your success?  Join GFS GROUP today — Where Drivers Come First!',
+  },
+];
 
 function WhyUs() {
   return (
@@ -32,6 +60,22 @@ function WhyUs() {
           YEARS OF <br /> EXCELLENT <br /> SERVICE
         </Text>
       </Center>
+      <SimpleGrid
+        pt={{ base: '56px', lg: '140px' }}
+        gap={{ base: '10px', lg: 6 }}
+        columns={{ base: 2, lg: 4 }}
+      >
+        {knowDatas?.map((el) => (
+          <Stack key={el.title} alignItems={'center'} color={'primary'}>
+            <Text fontWeight={500} fontSize={{ base: 34, lg: 63 }}>
+              {el?.title}
+            </Text>
+            <Text textAlign={'center'} fontSize={{ base: 11, lg: 21 }}>
+              {el?.text}
+            </Text>
+          </Stack>
+        ))}
+      </SimpleGrid>
     </Container>
   );
 }

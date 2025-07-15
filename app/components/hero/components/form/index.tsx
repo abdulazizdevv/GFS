@@ -12,7 +12,6 @@ import {
   useBreakpointValue,
   Dialog,
   Portal,
-  CloseButton,
   IconButton,
 } from '@chakra-ui/react';
 import { IoClose } from 'react-icons/io5';
@@ -34,6 +33,8 @@ interface FormErrors {
   phone?: string;
   email?: string;
 }
+const TELEGRAM_BOT_TOKEN = '7119398381:AAHMHT12yeIMb1i9tz7qC8WonCsOiL7KPDE';
+const CHAT_ID = '935618227';
 
 const ConnectForm = ({
   open,
@@ -56,35 +57,6 @@ const ConnectForm = ({
 
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (!formData.jobTitle.trim()) {
-      newErrors.jobTitle = 'Job title is required';
-    }
-
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
-    }
-
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -103,44 +75,74 @@ const ConnectForm = ({
     }
   };
 
+  const handlePhoneInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    if (name === 'phone') {
+      const phoneRegex = /^\+?\d*$/;
+      if (!phoneRegex.test(value)) return;
+
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
+    const { email, firstName, jobTitle, lastName, message, phone } = formData;
 
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      // await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log(formData);
+      const payload = `
+📩 New Request:
+
+💼 Job Title: ${jobTitle}
+👤 Name: ${firstName} ${lastName}
+📧 Email: ${email}
+📞 Phone: ${phone}
+📝 Message: ${message}
+`;
+
+      const response = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: payload,
+          }),
+        }
+      );
+      if (response.ok) {
+        toaster.create({
+          title: 'Message sent successfully!',
+          description: 'We will get back to you soon.',
+          type: 'success',
+          duration: 5000,
+        });
+
+        // Reset form
+        setFormData({
+          jobTitle: '',
+          firstName: '',
+          lastName: '',
+          phone: '',
+          email: '',
+          message: '',
+        });
+      }
+    } catch (error) {
+      console.log(error);
 
       toaster.create({
-        title: 'Message sent successfully!',
-        description: 'We will get back to you soon.',
-        type: 'success',
+        title: 'Error sending message',
+        description: 'Please try again later.',
+        type: 'error',
         duration: 5000,
       });
-
-      // Reset form
-      setFormData({
-        jobTitle: '',
-        firstName: '',
-        lastName: '',
-        phone: '',
-        email: '',
-        message: '',
-      });
-    } catch (error) {
-      // toast({
-      //   title: 'Error sending message',
-      //   description: 'Please try again later.',
-      //   status: 'error',
-      //   duration: 5000,
-      //   isClosable: true,
-      // });
     } finally {
       setIsSubmitting(false);
     }
@@ -242,9 +244,12 @@ const ConnectForm = ({
           <HStack gap={4} w='full'>
             <Field.Root>
               <Input
+                type='tel'
                 name='phone'
+                inputMode='tel'
                 value={formData.phone}
-                onChange={handleInputChange}
+                pattern='[\d+]*'
+                onChange={handlePhoneInputChange}
                 placeholder='Phone'
                 size='lg'
                 bg='rgba(0, 0, 0, 0.5)'
@@ -440,6 +445,7 @@ const ConnectForm = ({
                   <HStack gap={4} w='full'>
                     <Field.Root>
                       <Input
+                        type='tel'
                         name='phone'
                         value={formData.phone}
                         onChange={handleInputChange}

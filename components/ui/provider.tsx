@@ -7,6 +7,7 @@ import {
   defineConfig,
 } from '@chakra-ui/react';
 import { ColorModeProvider, type ColorModeProviderProps } from './color-mode';
+import { Toaster } from './toaster';
 
 const config = defineConfig({
   theme: {
@@ -15,7 +16,7 @@ const config = defineConfig({
         primary: {
           DEFAULT: { value: '#183B89' },
           100: { value: '#FEECED' },
-          700: { value: '#FF0010' },
+          600: { value: '#081246' },
         },
         red: {
           DEFAULT: { value: '#EB3337' },
@@ -61,6 +62,7 @@ const system = createSystem(defaultConfig, config);
 export function Provider(props: ColorModeProviderProps) {
   return (
     <ChakraProvider value={system}>
+      <Toaster />
       <ColorModeProvider forcedTheme='light' {...props} />
     </ChakraProvider>
   );

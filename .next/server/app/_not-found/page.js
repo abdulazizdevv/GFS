@@ -7,12 +7,10 @@ runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_io_index_mjs_c24c6
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_bi_index_mjs_fdc4ea5e._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_fa6_index_mjs_d21d9af8._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_gr_index_mjs_f1bb0fa5._.js");
-runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_hi_index_mjs_fb84e15a._.js");
-runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_io5_index_mjs_1653deb8._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_ri_index_mjs_85117579._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_lib_b806b5fe._.js");
-runtime.loadChunk("server/chunks/ssr/node_modules_791cf4dd._.js");
-runtime.loadChunk("server/chunks/ssr/[root-of-the-server]__1a694f1b._.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_3fa47c8b._.js");
+runtime.loadChunk("server/chunks/ssr/[root-of-the-server]__5fbc2d1d._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_96715ba7._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_next_dist_client_components_forbidden-error_ea7ea172.js");
 runtime.loadChunk("server/chunks/ssr/_412f9106._.js");

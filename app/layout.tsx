@@ -1,16 +1,18 @@
 import type { Metadata } from 'next';
-import { DM_Sans } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import '../styles/globals.css';
 import { Provider } from '@/components/ui/provider';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import '@smastrom/react-rating/style.css';
+import CookieConsent from './components/cookie-permission';
 
-// DM Sans fontni ulash
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
+// Poppins fontni ulash
+const poppins = Poppins({
+  variable: '--font-poppins',
   subsets: ['latin'],
   display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -25,11 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={dmSans.variable}>
+      <body className={poppins.variable}>
         <Provider>
           <Header />
           {children}
           <Footer />
+          <CookieConsent />
         </Provider>
       </body>
     </html>

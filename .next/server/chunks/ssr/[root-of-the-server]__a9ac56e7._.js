@@ -174,8 +174,8 @@ const config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$
                     100: {
                         value: '#FEECED'
                     },
-                    700: {
-                        value: '#FF0010'
+                    600: {
+                        value: '#081246'
                     }
                 },
                 red: {
