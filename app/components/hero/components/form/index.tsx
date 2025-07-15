@@ -34,7 +34,7 @@ interface FormErrors {
   email?: string;
 }
 const TELEGRAM_BOT_TOKEN = '7119398381:AAHMHT12yeIMb1i9tz7qC8WonCsOiL7KPDE';
-const CHAT_ID = '935618227';
+const CHAT_ID = '8064371546';
 
 const ConnectForm = ({
   open,
