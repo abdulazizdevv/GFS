@@ -4,7 +4,6 @@ import {
   IconButton,
   Drawer,
   Portal,
-  CloseButton,
   Image,
   Text,
   Stack,

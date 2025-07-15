@@ -5,11 +5,10 @@ import { BiSolidStar } from 'react-icons/bi';
 
 interface TestimonialCardProps {
   name: string;
-  rating: number;
   review: string;
 }
 
-export function Card({ name, rating, review }: TestimonialCardProps) {
+export function Card({ name, review }: TestimonialCardProps) {
   return (
     <Box
       mx={2}

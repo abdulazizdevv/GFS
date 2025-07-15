@@ -1,37 +1,13 @@
 import {
   Box,
-  Center,
   Container,
   HStack,
   Image,
   Link,
-  Separator,
   Stack,
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
-import { BiLogoInstagramAlt } from 'react-icons/bi';
-import {
-  FaFacebook,
-  FaFacebookF,
-  FaXTwitter,
-  FaYoutube,
-} from 'react-icons/fa6';
-import { GrLinkedinOption } from 'react-icons/gr';
-import { RiFacebookCircleFill } from 'react-icons/ri';
-import { AiFillYoutube, AiOutlineYoutube } from 'react-icons/ai';
-const legalLinks = [
-  { label: 'Terms', href: '/terms' },
-  { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Cookies', href: '/cookies' },
-];
-
-const socialIcons = [
-  { Icon: FaXTwitter, href: '#' },
-  { Icon: BiLogoInstagramAlt, href: '#' },
-  { Icon: RiFacebookCircleFill, href: '#' },
-  { Icon: GrLinkedinOption, href: '#' },
-];
 
 export default function Footer() {
   return (

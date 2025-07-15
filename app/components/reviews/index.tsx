@@ -1,54 +1,40 @@
-import {
-  Box,
-  Center,
-  Container,
-  HStack,
-  Image,
-  Stack,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Container, HStack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Card } from './reviews-card';
 const testimonials = [
   {
     id: 1,
     name: 'ANDREW',
-    rating: 5,
     review:
       'Smooth process from start to finish. I got real-time updates and my package arrived earlier than expected. GFS never fails.',
   },
   {
     id: 2,
     name: 'SOFIA',
-    rating: 5,
     review:
       'Loved how easy it was to schedule my delivery. They even confirmed the time by phone — super professional team!',
   },
   {
     id: 3,
     name: 'ABDULRAHMAN',
-    rating: 5,
     review:
       'The service is top notch. My shipments arrive on time, even when they go through several countries. GFS is a reliable partner.',
   },
   {
     id: 4,
     name: 'DMITRIY',
-    rating: 5,
     review:
       "The best service I've used so far. I can track everything and I always get notified before the courier arrives.",
   },
   {
     id: 5,
     name: 'FAZLIDDIN',
-    rating: 5,
     review:
       'The support team speaks clearly and answers with respect. Everything was arranged fast, and delivery came on time. I trust GFS with no doubts!',
   },
   {
     id: 6,
     name: 'JULIA',
-    rating: 5,
     review:
       'Every time I contact GFS, the staff is super kind and helpful. I feel like they really care. Love this level of service!',
   },
@@ -109,7 +95,6 @@ function Reviews() {
             <Card
               key={testimonial.id}
               name={testimonial.name}
-              rating={testimonial.rating}
               review={testimonial.review}
             />
           ))}

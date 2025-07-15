@@ -124,7 +124,7 @@ function Hero() {
           </Center>
         </Container>
       </Box>
-      <Image src={'/vawe.png'} />
+      <Image src={'/vawe.png'} alt='vawe' />
     </>
   );
 }

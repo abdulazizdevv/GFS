@@ -1,32 +1,16 @@
-'use client';
 import {
   Box,
-  Button,
   Center,
   Container,
   Flex,
-  Grid,
-  Heading,
-  HStack,
   Image,
   Span,
   Text,
-  useBreakpointValue,
   VStack,
 } from '@chakra-ui/react';
 import React from 'react';
-const partners = [
-  { name: 'ITS Logistics' },
-  { name: 'RFPX' },
-  { name: 'Schneider' },
-  { name: 'FedEx Ground' },
-  { name: 'Arrive Logistics' },
-  { name: 'UPS' },
-  { name: 'J.B. Hunt' },
-];
-function Partners() {
-  const isMd = useBreakpointValue({ base: false, md: true });
 
+function Partners() {
   return (
     <>
       <Container mt={{ base: '35px', lg: '100px' }} maxW={'1360px'}>

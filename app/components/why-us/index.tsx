@@ -1,8 +1,6 @@
 import {
-  Box,
   Center,
   Container,
-  HStack,
   SimpleGrid,
   Span,
   Stack,
