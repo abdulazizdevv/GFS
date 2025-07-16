@@ -29,10 +29,34 @@ export default function Footer() {
               Main menu
             </Text>
             <Stack mt={{ base: 7, lg: '50px' }} gap={{ base: 5, lg: 8 }}>
-              <Text fontSize={{ base: 13, lg: 24 }}>Why us</Text>
-              <Text fontSize={{ base: 13, lg: 24 }}>Partners</Text>
-              <Text fontSize={{ base: 13, lg: 24 }}>Reviews</Text>
-              <Text fontSize={{ base: 13, lg: 24 }}>Contact</Text>
+              <Link
+                href='#why-us'
+                _hover={{ color: 'red' }}
+                fontSize={{ base: 13, lg: 24 }}
+              >
+                Why us
+              </Link>
+              <Link
+                href='#partners'
+                _hover={{ color: 'red' }}
+                fontSize={{ base: 13, lg: 24 }}
+              >
+                Partners
+              </Link>
+              <Link
+                href='#reviews'
+                _hover={{ color: 'red' }}
+                fontSize={{ base: 13, lg: 24 }}
+              >
+                Reviews
+              </Link>
+              <Link
+                href='#contact'
+                _hover={{ color: 'red' }}
+                fontSize={{ base: 13, lg: 24 }}
+              >
+                Contact
+              </Link>
             </Stack>
           </Stack>
           <Stack color={'light'}>

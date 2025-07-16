@@ -10,19 +10,19 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Box id='why-us'>
+      <Box id='why-us' scrollMarginTop={'100px'}>
         <WhyUs />
       </Box>
-      <Box id='solutions'>
+      <Box id='solutions' scrollMarginTop={'100px'}>
         <Solutions />
       </Box>
-      <Box id='partners'>
+      <Box id='partners' scrollMarginTop={'100px'}>
         <Partners />
       </Box>
-      <Box id='reviews'>
+      <Box id='reviews' scrollMarginTop={'100px'}>
         <Reviews />
       </Box>
-      <Box id='contact'>
+      <Box id='contact' scrollMarginTop={'100px'}>
         <Contacts />
       </Box>
     </>

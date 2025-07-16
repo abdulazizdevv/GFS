@@ -16,7 +16,7 @@ import { IoClose } from 'react-icons/io5';
 
 function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const onClose = () => setIsOpen(false);
   return (
     <>
       <Drawer.Root
@@ -63,10 +63,34 @@ function MobileNav() {
                   Main menu
                 </Text>
                 <Stack mt={6} gap={4} pb={6} color={'primary'}>
-                  <Link _hover={{ color: 'red' }}>Why us</Link>
-                  <Link _hover={{ color: 'red' }}>Partners</Link>
-                  <Link _hover={{ color: 'red' }}>Reviews</Link>
-                  <Link _hover={{ color: 'red' }}>Contact</Link>
+                  <Link
+                    onClick={onClose}
+                    href='#why-us'
+                    _hover={{ color: 'red' }}
+                  >
+                    Why us
+                  </Link>
+                  <Link
+                    onClick={onClose}
+                    href='#partners'
+                    _hover={{ color: 'red' }}
+                  >
+                    Partners
+                  </Link>
+                  <Link
+                    onClick={onClose}
+                    href='#reviews'
+                    _hover={{ color: 'red' }}
+                  >
+                    Reviews
+                  </Link>
+                  <Link
+                    onClick={onClose}
+                    href='#contact'
+                    _hover={{ color: 'red' }}
+                  >
+                    Contact
+                  </Link>
                 </Stack>
               </Drawer.Body>
             </Drawer.Content>

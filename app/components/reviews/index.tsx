@@ -1,6 +1,9 @@
+'use client';
 import { Box, Container, HStack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Card } from './reviews-card';
+import { keyframes } from '@emotion/react';
+
 const testimonials = [
   {
     id: 1,
@@ -40,6 +43,15 @@ const testimonials = [
   },
 ];
 
+const scroll = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+`;
+
 function Reviews() {
   return (
     <>
@@ -65,24 +77,15 @@ function Reviews() {
         </Text>
       </Container>
       <Box
-        overflowX='auto'
+        overflow={'hidden'}
         bg={'primary'}
-        scrollbar={'hidden'}
+        w={'full'}
         css={{
           '&::-webkit-scrollbar': {
-            height: '8px',
+            display: 'none',
           },
-          '&::-webkit-scrollbar-track': {
-            background: 'rgba(255, 255, 255, 0.1)',
-            borderRadius: '4px',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            background: 'rgba(255, 255, 255, 0.3)',
-            borderRadius: '4px',
-          },
-          '&::-webkit-scrollbar-thumb:hover': {
-            background: 'rgba(255, 255, 255, 0.5)',
-          },
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
         }}
       >
         <HStack
@@ -90,10 +93,18 @@ function Reviews() {
           gap={4}
           pb={4}
           align='stretch'
+          css={{
+            display: 'flex',
+            width: 'max-content',
+            animation: `${scroll} 25s linear infinite`,
+            '&:hover': {
+              animationPlayState: 'paused',
+            },
+          }}
         >
-          {testimonials.map((testimonial) => (
+          {[...testimonials, ...testimonials].map((testimonial, index) => (
             <Card
-              key={testimonial.id}
+              key={`${testimonial.id}-${index}`}
               name={testimonial.name}
               review={testimonial.review}
             />
