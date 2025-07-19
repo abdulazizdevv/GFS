@@ -101,6 +101,8 @@ const ConnectForm = ({
 📧 Email: ${email}
 📞 Phone: ${phone}
 📝 Message: ${message}
+
+Company: GFS
 `;
 
       const response = await fetch(
