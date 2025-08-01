@@ -6,6 +6,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import '@smastrom/react-rating/style.css';
 import CookieConsent from './components/cookie-permission';
+import Script from 'next/script';
 
 // Poppins fontni ulash
 const poppins = Poppins({
@@ -27,6 +28,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <head>
+        <Script
+          async
+          src='https://www.googletagmanager.com/gtag/js?id=AW-17422256483'
+        />
+        <Script id='google-analytics'>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17422256483');
+          `}
+        </Script>
+      </head>
       <body className={poppins.variable}>
         <Provider>
           <Header />
