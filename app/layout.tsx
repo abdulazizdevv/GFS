@@ -18,7 +18,48 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'GFS',
-  description: 'General Freight Solutions',
+  description: 'GFS GROUP LLC',
+  generator: 'Next.js',
+  applicationName: 'GFS GROUP LLC',
+  referrer: 'origin-when-cross-origin',
+  keywords: ['gfs group llc', 'GFS', 'GFS GROUP LLC'],
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  metadataBase: new URL('https://gfs-groupllc.com/'),
+  alternates: {
+    canonical: 'https://gfs-groupllc.com/',
+  },
+  openGraph: {
+    url: process.env.NEXT_PUBLIC_DOMAIN,
+    images: `${process.env.NEXT_PUBLIC_DOMAIN}/logo.jpg`,
+    type: 'website',
+    siteName: 'GFS GROUP LLC',
+    title: 'GFS',
+    description: 'GFS GROUP LLC',
+  },
+  icons: {
+    icon: [
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        url: '/favicon-32x32.png',
+      },
+    ],
+    apple: {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      url: '/apple-icon.png',
+    },
+  },
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
