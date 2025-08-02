@@ -1,5 +1,5 @@
 'use client';
-import React, { Dispatch, useState } from 'react';
+import React, { ChangeEvent, Dispatch, useState } from 'react';
 import {
   Box,
   VStack,
@@ -13,6 +13,8 @@ import {
   Dialog,
   Portal,
   IconButton,
+  RadioCard,
+  SimpleGrid,
 } from '@chakra-ui/react';
 import { IoClose } from 'react-icons/io5';
 import { toaster } from '@/components/ui/toaster';
@@ -24,6 +26,9 @@ interface FormData {
   phone: string;
   email: string;
   message: string;
+  zipcode: string;
+  experience?: string;
+  class_cdl?: string;
 }
 
 interface FormErrors {
@@ -32,9 +37,22 @@ interface FormErrors {
   lastName?: string;
   phone?: string;
   email?: string;
+  experience?: string;
+  class_cdl?: string;
 }
 const TELEGRAM_BOT_TOKEN = '7119398381:AAHMHT12yeIMb1i9tz7qC8WonCsOiL7KPDE';
 const CHAT_ID = '8064371546';
+
+const items = [
+  { value: 'no', title: 'No' },
+  { value: 'yes', title: 'Yes' },
+];
+const itemsExperience = [
+  { value: 'need_cdl_a', title: 'Need CDL-A' },
+  { value: 'half', title: '0-6 months' },
+  { value: 'full', title: '6-12 months' },
+  { value: 'one_plus', title: '1 year or more' },
+];
 
 const ConnectForm = ({
   open,
@@ -50,12 +68,30 @@ const ConnectForm = ({
     phone: '',
     email: '',
     message: '',
+    zipcode: '',
+    class_cdl: '',
+    experience: '',
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isMobile = useBreakpointValue({ base: true, lg: false });
+
+  function getExperienceLabel(value: string): string {
+    switch (value) {
+      case 'need_cdl_a':
+        return 'Need CDL-A';
+      case 'half':
+        return '0-6 months';
+      case 'full':
+        return '6-12 months';
+      case 'one_plus':
+        return '1 year or more';
+      default:
+        return 'Unknown experience';
+    }
+  }
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -88,7 +124,17 @@ const ConnectForm = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { email, firstName, jobTitle, lastName, message, phone } = formData;
+    const {
+      email,
+      firstName,
+      jobTitle,
+      lastName,
+      message,
+      phone,
+      class_cdl,
+      experience,
+      zipcode,
+    } = formData;
 
     setIsSubmitting(true);
 
@@ -101,6 +147,9 @@ const ConnectForm = ({
 📧 Email: ${email}
 📞 Phone: ${phone}
 📝 Message: ${message}
+📝 ZIPCODE: ${zipcode}
+Do you have a valid Class A CDL: ${class_cdl}
+Experience: ${getExperienceLabel(experience ?? '')}
 
 Company: GFS
 `;
@@ -134,6 +183,9 @@ Company: GFS
           phone: '',
           email: '',
           message: '',
+          zipcode: '',
+          class_cdl: '',
+          experience: '',
         });
       }
     } catch (error) {
@@ -284,6 +336,25 @@ Company: GFS
               />
             </Field.Root>
           </HStack>
+          <Field.Root>
+            <Input
+              name='zipcode'
+              type='text'
+              value={formData.zipcode}
+              onChange={handleInputChange}
+              placeholder='Zip Code'
+              size='lg'
+              bg='rgba(0, 0, 0, 0.5)'
+              border='none'
+              borderRadius='12px'
+              color='white'
+              _placeholder={{ color: 'rgba(255, 255, 255, 0.6)' }}
+              _focus={{
+                boxShadow: '0 0 0 2px rgba(255, 255, 255, 0.3)',
+                bg: 'rgba(0, 0, 0, 0.6)',
+              }}
+            />
+          </Field.Root>
 
           {/* Message */}
           <Field.Root>
@@ -293,7 +364,7 @@ Company: GFS
               onChange={handleInputChange}
               placeholder='Your message (optional)'
               size='lg'
-              minH='120px'
+              minH='80px'
               bg='rgba(0, 0, 0, 0.5)'
               border='none'
               borderRadius='12px'
@@ -306,7 +377,70 @@ Company: GFS
               }}
             />
           </Field.Root>
-
+          <RadioCard.Root
+            w={'full'}
+            align='center'
+            justify='center'
+            defaultValue='no'
+            colorPalette={'blue'}
+            value={formData?.class_cdl}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFormData((prev) => ({ ...prev, class_cdl: e.target.value }))
+            }
+            orientation='horizontal'
+          >
+            <RadioCard.Label fontSize={18} color={'rgba(255, 255, 255, 0.6)'}>
+              Do you have a valid Class A CDL?
+            </RadioCard.Label>
+            <HStack w={'full'} align='stretch'>
+              {items.map((item) => (
+                <RadioCard.Item w={'full'} key={item.value} value={item.value}>
+                  <RadioCard.ItemHiddenInput />
+                  <RadioCard.ItemControl
+                    py={3}
+                    cursor={'pointer'}
+                    bg={'rgba(33, 33, 33, 0.6)'}
+                  >
+                    <RadioCard.ItemText color={'light'}>
+                      {item.title}
+                    </RadioCard.ItemText>
+                  </RadioCard.ItemControl>
+                </RadioCard.Item>
+              ))}
+            </HStack>
+          </RadioCard.Root>
+          <RadioCard.Root
+            w={'full'}
+            align='center'
+            justify='center'
+            colorPalette={'blue'}
+            orientation='horizontal'
+            defaultValue='need_cdl_a'
+            value={formData?.experience}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFormData((prev) => ({ ...prev, experience: e.target.value }))
+            }
+          >
+            <RadioCard.Label fontSize={18} color={'rgba(255, 255, 255, 0.6)'}>
+              Over-the-Road driving experience ?
+            </RadioCard.Label>
+            <SimpleGrid w={'full'} gap={2} columns={2}>
+              {itemsExperience.map((item) => (
+                <RadioCard.Item w={'full'} key={item.value} value={item.value}>
+                  <RadioCard.ItemHiddenInput />
+                  <RadioCard.ItemControl
+                    py={3}
+                    cursor={'pointer'}
+                    bg={'rgba(33, 33, 33, 0.6)'}
+                  >
+                    <RadioCard.ItemText color={'light'}>
+                      {item.title}
+                    </RadioCard.ItemText>
+                  </RadioCard.ItemControl>
+                </RadioCard.Item>
+              ))}
+            </SimpleGrid>
+          </RadioCard.Root>
           {/* Submit Button */}
           <Button
             type='submit'
@@ -484,6 +618,26 @@ Company: GFS
                     </Field.Root>
                   </HStack>
 
+                  <Field.Root>
+                    <Input
+                      name='zipcode'
+                      type='text'
+                      value={formData.zipcode}
+                      onChange={handleInputChange}
+                      placeholder='Zip Code'
+                      size='md'
+                      bg='#111B2B'
+                      border='none'
+                      borderRadius='12px'
+                      color='white'
+                      _placeholder={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                      _focus={{
+                        boxShadow: '0 0 0 2px rgba(255, 255, 255, 0.3)',
+                        bg: 'rgba(0, 0, 0, 0.6)',
+                      }}
+                    />
+                  </Field.Root>
+
                   {/* Message */}
                   <Field.Root>
                     <Textarea
@@ -505,6 +659,91 @@ Company: GFS
                       }}
                     />
                   </Field.Root>
+
+                  <RadioCard.Root
+                    w={'full'}
+                    align='center'
+                    justify='center'
+                    defaultValue='no'
+                    colorPalette={'blue'}
+                    value={formData?.class_cdl}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        class_cdl: e.target.value,
+                      }))
+                    }
+                    orientation='horizontal'
+                  >
+                    <RadioCard.Label
+                      fontSize={16}
+                      color={'rgba(255, 255, 255, 0.6)'}
+                    >
+                      Do you have a valid Class A CDL?
+                    </RadioCard.Label>
+                    <HStack w={'full'} align='stretch'>
+                      {items.map((item) => (
+                        <RadioCard.Item
+                          w={'full'}
+                          key={item.value}
+                          value={item.value}
+                        >
+                          <RadioCard.ItemHiddenInput />
+                          <RadioCard.ItemControl
+                            py={3}
+                            cursor={'pointer'}
+                            bg={'rgba(33, 33, 33, 0.6)'}
+                          >
+                            <RadioCard.ItemText color={'light'}>
+                              {item.title}
+                            </RadioCard.ItemText>
+                          </RadioCard.ItemControl>
+                        </RadioCard.Item>
+                      ))}
+                    </HStack>
+                  </RadioCard.Root>
+                  <RadioCard.Root
+                    w={'full'}
+                    align='center'
+                    justify='center'
+                    colorPalette={'blue'}
+                    orientation='horizontal'
+                    defaultValue='need_cdl_a'
+                    value={formData?.experience}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        experience: e.target.value,
+                      }))
+                    }
+                  >
+                    <RadioCard.Label
+                      fontSize={16}
+                      color={'rgba(255, 255, 255, 0.6)'}
+                    >
+                      Over-the-Road driving experience ?
+                    </RadioCard.Label>
+                    <SimpleGrid w={'full'} gap={2} columns={2}>
+                      {itemsExperience.map((item) => (
+                        <RadioCard.Item
+                          w={'full'}
+                          key={item.value}
+                          value={item.value}
+                        >
+                          <RadioCard.ItemHiddenInput />
+                          <RadioCard.ItemControl
+                            py={3}
+                            cursor={'pointer'}
+                            bg={'rgba(33, 33, 33, 0.6)'}
+                          >
+                            <RadioCard.ItemText color={'light'}>
+                              {item.title}
+                            </RadioCard.ItemText>
+                          </RadioCard.ItemControl>
+                        </RadioCard.Item>
+                      ))}
+                    </SimpleGrid>
+                  </RadioCard.Root>
 
                   {/* Submit Button */}
                   <Button
